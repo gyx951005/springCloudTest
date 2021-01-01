@@ -1,0 +1,19 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cloud.eureka.consumer.payment8001.dao.PaymentDao">
+
+
+	<insert id="create" parameterType="OrderEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into payment(serial) values(#{serial});
+	</insert>
+
+
+	<resultMap type="OrderEntity" id="orderMap">
+		<id column="id" property="id" jdbcType="BIGINT"/>
+		<id column="serial" property="serial" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<select id="getById" parameterType="Long" resultMap="orderMap" >
+		select * from payment where id=#{id};
+	</select>
+</mapper>
